@@ -1,8 +1,19 @@
 body {
     background-image: url("./earth.jpg");
     background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 div.contentSections {
     background-color: rgba(100, 100, 100, .9);
+}
+
+button#countryInputButton {
+    width: 100%;
+
+}
+
+div.inputRow {
+    margin: 0;
 }
