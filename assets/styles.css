@@ -11,4 +11,9 @@ div.contentSections {
 
 button#countryInputButton {
     width: 100%;
+
+}
+
+div.inputRow {
+    margin: 0;
 }
