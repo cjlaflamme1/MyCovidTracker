@@ -9,6 +9,11 @@ div.contentSections {
     background-color: rgba(100, 100, 100, .9);
 }
 
+div.articleRow {
+    margin-bottom: 0;
+}
+
+
 button#countryInputButton {
     width: 100%;
 
