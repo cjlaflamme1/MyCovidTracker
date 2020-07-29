@@ -1,4 +1,4 @@
-body {
+body.indexPage {
     background-image: url("./earth.jpg");
     background-size: cover;
     background-repeat: no-repeat;
@@ -8,6 +8,11 @@ body {
 div.contentSections {
     background-color: rgba(100, 100, 100, .9);
 }
+
+div.articleRow {
+    margin-bottom: 0;
+}
+
 
 button#countryInputButton {
     width: 100%;
