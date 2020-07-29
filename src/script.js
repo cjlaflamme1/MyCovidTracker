@@ -1,6 +1,7 @@
 $('document').ready(function () {
     // HTML linked Variables
-
+    const countryInput = $('#countryInput');
+    const countryInputButton = $('#countryInputButton');
 
     // NY Times API Object
     const apiNYTimes = {
