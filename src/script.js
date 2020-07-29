@@ -23,9 +23,9 @@ $('document').ready(function () {
 
 
 
-    const btn = $("#button");
+     
 
-    btn.on("click", function () {
+    countryInputButton.on("click", function () {
 
         console.log("click");
 
