@@ -1,0 +1,8 @@
+body {
+    background-image: url("./earth.jpg");
+    background-size: cover;
+}
+
+div.contentSections {
+    background-color: rgba(100, 100, 100, .9);
+}
