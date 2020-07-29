@@ -1,4 +1,4 @@
-body {
+body.indexPage {
     background-image: url("./earth.jpg");
     background-size: cover;
     background-repeat: no-repeat;
