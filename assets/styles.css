@@ -24,3 +24,14 @@ button#countryInputButton {
 div.inputRow {
     margin: 0;
 }
+
+main.container {
+    margin-bottom: 50px;
+}
+
+a.fixedButton {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+}
