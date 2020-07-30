@@ -72,9 +72,9 @@ Project Link: [Git Hub Pages URL goes here](Git Hub Pages URL goes here)
 * LinkedIn
 
 ## Dwayne Risley
-* email
+* [RisleyDwayne@gmail.com](RisleyDwayne@gmail.com)
 * [https://github.com/RisleyDwayne](https://github.com/RisleyDwayne)
-* LinkedIn
+* [www.linkedin.com/in/dwayne-risley](www.linkedin.com/in/dwayne-risley)
 
 <!-- ACKNOWLEDGEMENTS -->
 # Acknowledgements
