@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,40 +8,69 @@
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
-    <link rel="stylesheet" href="./assets/styles.css" type="text/css" />
-    
+    <link rel="stylesheet" href="./assets/data.css" type="text/css" />
+
 </head>
 <!-- These are just some test colors to get a theme going for the rest of our pages! -->
+
 <body>
     <!-- What do you think about a sidenav for mobile, and and a top nav for all over screen?  -->
-    <header class="container">
-        <div class="row card contentSections">
-            <div class="col s12 white-text card-content">
-                <h1>This is the intro header, right here!</h1>
-            </div>
-        </div>
-    </header>
+
     <main class="container">
-        <div class="row card contentSections">
-            <div class="col s12 white-text card-content">
-                <h3>This is some basic info stuff, ya know, that info on our wireframe?</h3>
+        <div class="row contentSections">
+            <div class="col s1"></div>
+            <div class="card populatedCountry col s4">
+                <h3>Country</h3>
             </div>
+            <div class="col s2"></div>
+            <div class="card newSearch col s4">
+                <label>Search</label>
+                <nav>
+                    <div class="nav-wrapper">
+                        <form>
+                            <div class="input-field">
+                                <input id="search" type="search" />
+                                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                                <i class="material-icons">close</i>
+                            </div>
+                        </form>
+                    </div>
+                </nav>
+            </div>
+            <div class="col s1"></div>
         </div>
-        <div class="row card contentSections">
-            <form action="" class="col s12">
-                <div class="row card-content">
-                    <div class="input-field col s8">
-                        <label for="countryInput">Insert Country</label>
-                        <input type="text" placeholder="Type preferred country, or submit for World stats." id="countryInput">
-                    </div>
-                    <div class="col s4">
-                        <!-- I think we should make this button bigger and more interesting -->
-                        <button class="waves-effect waves-light btn-large" type="button" id="countryInputButton">Submit</button>
-                          <!-- ^^^ added type="button" to prevent default type="submit" from firing  -->
-                    </div>
+        <section class="row">
+            <div class="card contentSections">
+                <div class="card-content s12">
+                    <p class="center-align">Data goes here</p>
                 </div>
-            </form>
-        </div>
+            </div>
+        </section>
+        <br />
+        <section class="row">
+            <div class="card contentSections">
+                <div class="col s12"></div>
+                <label>Search more content</label>
+                <nav class="row">
+                    <div class="nav-wrapper">
+                            <div class="input-field col s4">
+                                <input id="search" type="search" />
+                                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                                <i class="material-icons">close</i>
+                            </div>
+                    </div>
+                </nav>
+                <div class="row">
+                    <div class="col s1"></div>
+                    <div class="articles card-content col s2"></div>
+                    <div class="articles card-content col s2"></div>
+                    <div class="articles card-content col s2"></div>
+                    <div class="articles card-content col s2"></div>
+                    <div class="articles card-content col s2"></div>
+                    <div class="col s1"></div>
+                </div>
+            </div>
+        </section>
         <!-- Perhaps a "Modal Bottom Sheet Style" to present the Covid precautions? Might be a fun challenge. -->
     </main>
 
@@ -48,4 +78,5 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="./src/script.js"></script>
 </body>
+
 </html>
