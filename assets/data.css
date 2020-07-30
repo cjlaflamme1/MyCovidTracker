@@ -1,0 +1,18 @@
+body {
+    background-color:#90a4ae ;
+}
+
+.contentSections {
+    padding: 40px;
+}
+
+label {
+    color: #000000;
+    font-size: x-large;
+}
+
+.articles {
+    background-color: gray;
+    margin: 10px;
+    border-radius: 10px;
+}
