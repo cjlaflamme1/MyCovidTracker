@@ -3,6 +3,8 @@ body.indexPage {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    height: 100%;
+    width: auto;
 }
 
 div.contentSections {
@@ -21,4 +23,15 @@ button#countryInputButton {
 
 div.inputRow {
     margin: 0;
+}
+
+main.container {
+    margin-bottom: 50px;
+}
+
+a.fixedButton {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
 }
