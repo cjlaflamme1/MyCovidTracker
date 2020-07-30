@@ -5,10 +5,13 @@ let userInputSort = '';
 
 // NY Times API Object
 const apiNYTimes = {
-    apiKey: `9dBz5iLUOkToYiTEjcz0mgrNxq65pGzm`,
+    apiKey: '9dBz5iLUOkToYiTEjcz0mgrNxq65pGzm',
     searchTerm: `q=${userInputTerm}`,  // default to 'Coronavirus'
     searchSort: `&sort=${userInputSort}`,  // default to 'newest'
-    url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?${apiNYTimes.searchTerm}${apiNYTimes.searchSort}&api-key=${apiNYTimes.apiKey}`,
+    url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?
+    ${$(this).searchTerm}
+    ${$(this).searchSort}&api-key=
+    ${$(this).apiKey}`,
     call() {
         this.checkInputs();
         $.ajax({
@@ -25,9 +28,10 @@ const apiNYTimes = {
         if (userInputSort === '') {
             userInputSort = 'newest';
         }
-    }
+    },
+    
 }
 
-apiNYTimes.call();
+// apiNYTimes.call();
 
 });
