@@ -1,10 +1,14 @@
 
 let countries = [];
+let countryNames = {};
 $('document').ready(function () {
     // HTML linked Variables
     const countryInput = $('#countryInput');
     const countryInputButton = $('#countryInputButton');
 
+    
+
+    populateCountryList();
 
 
     //CovidAPI stuff here
@@ -16,14 +20,36 @@ $('document').ready(function () {
             timeout: 0,
         }).then(function (response) {
 
-            countryInputButton.prop("disabled", false);
+            
             countries = response;
             console.log(countries.find(country => country.Country === "United States of America").Slug);
-            
+
+            countryNames = countries.reduce(function(accumulator, currentValue) {
+                accumulator[currentValue.Country] = null;
+                return accumulator;
+               // return [...accumulator, currentValue.Country]
+              }, {});
+
+            console.log(countryNames);
+
+            $('input.autocomplete').autocomplete({
+                data: countryNames,
+                limit: Infinity
+            });
+
+
+            countryInputButton.prop("disabled", false);
         });
 
         //console.log(countries);
     }
+
+    
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelectorAll('.autocomplete');
+        var instances = M.Autocomplete.init(elems, options);
+      });
 
 
     countryInputButton.on("click", function () {
