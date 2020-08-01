@@ -1,18 +1,33 @@
-body {
-    background-color:#90a4ae ;
-}
-
-.contentSections {
+div.contentSections {
     padding: 40px;
+    background-color: rgba(100, 100, 100, .9);
 }
 
-label {
+.searchLabel {
     color: #000000;
     font-size: x-large;
 }
 
+.newSearchBtn {
+    margin-left: 10px;
+}
+
+.contentSearch {
+    color: #ffffff;
+    font-size: x-large;
+    margin-left: 10px;
+}
+
+input#search {
+    background-color: #ffffff;
+}
+
+.newContentBtn {
+    margin: 5px;
+    width: 100%;
+}
+
 .articles {
-    background-color: gray;
+    background-color: #ffffff;
     margin: 10px;
-    border-radius: 10px;
 }
