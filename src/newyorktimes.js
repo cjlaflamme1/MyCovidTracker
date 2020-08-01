@@ -20,14 +20,14 @@ $('document').ready(function () {
             });
         },
         displayArticles(response) {
-            for (i = 0; i < 6; i++){
+            for (i = 0; i < 6; i++) {
                 num = i + 1;
                 const headline = $("<div>").addClass(`article-headline card-content`).text(response[i].headline.main);
                 const abstract = $("<div>").addClass(`article-abstract card-content`).text(response[i].abstract);
-                const articleLink = $("<a>").addClass(`article-link card-content`).text('Read Full Article').attr('href', response[i].web_url);
+                const articleLink = $("<a>").addClass(`article-link card-content`).text('Read Full Article').attr('href', response[i].web_url).attr('target', '_blank');
                 const saveButton = $("<button>").addClass('button').attr('type', 'button').attr('id', 'saveButton').text('Save');
 
-                const newsArticleDiv = $("<div>").addClass(`articles card-content col s12 m5`).attr("data-name", article[i]);
+                const newsArticleDiv = $("<div>").addClass(`articles card-content col s12 m5`).attr("data-name", `article${i}`);
                 newsArticleDiv.append(headline, abstract, articleLink, saveButton);
                 newsArticles.append(newsArticleDiv);
             }
