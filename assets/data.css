@@ -42,3 +42,19 @@ a.fixedButton {
 main.container {
     margin-bottom: 50px;
 }
+/* Chad added to format the modal */
+ul.preventList
+li.preventList {
+    list-style-type: circle;
+}
+/* Chad added to format the modal */
+ul.innerList 
+li.innerList {
+    list-style-type: square;
+    margin-left: 15px;
+}
+/* Chad added to format the modal */
+img.cdcImage {
+    width: 100%;
+    height: auto;
+}
