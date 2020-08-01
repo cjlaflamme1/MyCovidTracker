@@ -15,7 +15,7 @@ div.contentSections {
 .contentSearch {
     color: #ffffff;
     font-size: x-large;
-    margin-left: 10px;
+    margin: 10px;
 }
 
 input#search {
@@ -24,7 +24,6 @@ input#search {
 
 .newContentBtn {
     margin: 5px;
-    width: 100%;
 }
 
 .articles {

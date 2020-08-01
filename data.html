@@ -43,41 +43,18 @@
             </div>
         </section>
         <section class="row">
+            <div class="col s12 m6"></div>
             <div class="card contentSections">
+                <label class="contentSearch">Search more content</label>
                 <div class="row">
-                    <div class="col s12 m4">
-                        <label class="contentSearch">Search More Content</label>
-                        <div class="input-field">
-                            <input class="col s8 m6" id="search" type="search" autocomplete="off" />
-                            <button class="newContentBtn waves-effect waves-light btn-small col s4 m2" type="button"><i
-                                    class="material-icons">search</i></button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col s2 m1"></div>
-                        <div class="articles card-content col s2">
-                            <h5 class="center-align">Article 1</h5>
-                            <img src="https://via.placeholder.com/150" alt="Article 1">
-
-                        </div>
-                        <div class="articles card-content col s2">
-                            <h5 class="center-align">Article 2</h5>
-                            <img src="https://via.placeholder.com/150" alt="Article 2">
-                        </div>
-                        <div class="articles card-content col s2">
-                            <h5 class="center-align">Article 3</h5>
-                            <img src="https://via.placeholder.com/150" alt="Article 3">
-                        </div>
-                        <div class="articles card-content col s2">
-                            <h5 class="center-align">Article 4</h5>
-                            <img src="https://via.placeholder.com/150" alt="Article 4">
-                        </div>
-                        <div class="articles card-content col s2">
-                            <h5 class="center-align">Article 5</h5>
-                            <img src="https://via.placeholder.com/150" alt="Article 5">
-                        </div>
+                    <div class="input-field col s12 m4">
+                        <input class="col s10 m8" id="search" type="text">
+                        <button class="newContentBtn waves-effect waves-light btn-small col s2 m3" type="button"><i
+                                class="material-icons">search</i></button>
                     </div>
                 </div>
+                <div class="row" id="newsArticles"></div>
+            </div>
         </section>
         <!-- Perhaps a "Modal Bottom Sheet Style" to present the Covid precautions? Might be a fun challenge. -->
     </main>
