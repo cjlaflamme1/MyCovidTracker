@@ -31,3 +31,14 @@ input#search {
     background-color: #ffffff;
     margin: 10px;
 }
+/* Chad added to format the modal */
+a.fixedButton {
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+}
+/* Chad added to format the modal */
+main.container {
+    margin-bottom: 50px;
+}
