@@ -58,3 +58,7 @@ img.cdcImage {
     width: 100%;
     height: auto;
 }
+/* Chad added to format the modal */
+div.modal.bottom-sheet {
+    max-height: 65%;
+}
