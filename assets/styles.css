@@ -25,6 +25,10 @@ div.inputRow {
     margin: 0;
 }
 
+input.autocomplete {
+    color: white;
+}
+
 main.container {
     margin-bottom: 50px;
 }
