@@ -27,7 +27,7 @@ $('document').ready(function () {
                 const abstract = $("<div>").addClass(`article-abstract card-content`).text(response[i].abstract);
                 const articleLink = $("<a>").addClass(`article-link card-content`).text('Read Full Article').attr('href', response[i].web_url);
 
-                const newsArticleDiv = $("<div>").addClass(`articles card-content col s12 m5`).attr("id", `news-article-${num}`).attr('value', `article-${i}`);
+                const newsArticleDiv = $("<div>").addClass(`articles card-content col s12 m4`).attr("id", `news-article-${num}`).attr('value', `article-${i}`);
                 newsArticleDiv.append(headline, abstract, articleLink);
                 newsArticles.append(newsArticleDiv);
             }
