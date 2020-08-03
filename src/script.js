@@ -8,6 +8,7 @@ $('document').ready(function () {
     // index Variables
     const countryInput = $('#countryInput');
     const countryInputButton = $('#countryInputButton');
+    const dataField = $(".contentSections .card-content");
 
     //data.html
     const countryEl = $('div.populatedCountry h3');

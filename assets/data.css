@@ -1,6 +1,10 @@
+body.dataPage {
+    background-color: #37474f;
+}
+
 div.contentSections {
     padding: 40px;
-    background-color: rgba(100, 100, 100, .9);
+    background-color: #bbdefb;
 }
 
 .searchLabel {
