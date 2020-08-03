@@ -1,3 +1,7 @@
+nav {
+    background-color: rgba(100, 100, 100, .9)
+}
+
 body {
     background-image: url("./earth.jpg");
     background-color: black;
