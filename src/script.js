@@ -104,7 +104,7 @@ $('document').ready(function () {
         countryEl.text(country);
     }
     $('.modal').modal();
-
+    $('.sidenav').sidenav();
     initApp();
 
 });
