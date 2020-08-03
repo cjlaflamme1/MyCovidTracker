@@ -21,6 +21,9 @@ $('document').ready(function () {
                 apiNYTimes.displayRecentArticles(response.response.docs);
             });
         },
+        newSearch() {
+            console.log('this is fo-real');
+        },
         displayRecentArticles(response) {
             for (i = 0; i < 6; i++) {
                 num = i + 1;
@@ -75,6 +78,7 @@ $('document').ready(function () {
 
     $(document).on("click", "#saveButton", apiNYTimes.saveArticle);
     $(document).on("click", "#deleteButton", apiNYTimes.deleteArticle);
+    $(document).on('click', '.newContentBtn', apiNYTimes.newSearch);
 
     if (Array.isArray(savedNewsArticles)) {  // does an array already exist in local storage?
         apiNYTimes.loadSavedArticles();  // if so, load it
