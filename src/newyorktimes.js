@@ -31,7 +31,7 @@ $('document').ready(function () {
                 const articleLink = $("<a>").addClass(`article-link card-content`).text('Read Full Article').attr('href', articleLinkURL).attr('target', '_blank').attr("data-name", `link${i}`);
                 const saveButton = $("<button>").addClass('button').attr('type', 'button').attr('id','saveButton').text('Save').attr("data-name", `${i}`);
 
-                const newsArticleDiv = $("<div>").addClass(`articles card-content col s12 m5`).attr("data-name", `article${i}`);
+                const newsArticleDiv = $("<div>").addClass(`articles card-content col s12 m4`).attr("data-name", `article${i}`);
                 newsArticleDiv.append(headline, articleLink, saveButton);
                 newsArticles.append(newsArticleDiv);
                 const recentArticleObject = {

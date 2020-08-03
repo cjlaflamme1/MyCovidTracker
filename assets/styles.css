@@ -86,6 +86,10 @@ input#search {
 }
 
 .articles {
-    background-color: #ffffff;
+    background-color: rgba(100, 100, 100, .9);
     margin: 0px;
+    border: 1px solid white;
+    color: #ffffff;
+    height: 200px;
+    width: auto;
 }
