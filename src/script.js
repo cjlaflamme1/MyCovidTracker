@@ -2,7 +2,7 @@
 let countries = [];
 let countryNames = null;
 let currentCountry = "";
-let countrySlugs = {};
+let currentCountrySlug = "";
 let date = null;
 $('document').ready(function () {
     // index Variables
@@ -24,12 +24,8 @@ $('document').ready(function () {
         });
     }
 
-    function setCountrySlugsAndAutofill(response){
+    function setCountrysAndAutofill(response){
 
-        countrySlugs = countries.reduce(function (accumulator, currentValue) {
-                accumulator[currentValue.Country] = currentValue.Country.Slug;
-                return accumulator;
-            }, {});
 
             countries = response;
             //console.log(countries.find(country => country.Country === "United States of America").Slug);
@@ -49,22 +45,32 @@ $('document').ready(function () {
             return Promise.resolve(response);
     }
 
-    function populateCountryData(response) {
+    function getCountryData(slug) {
 
-        //use response to populate DOM
+        
+
+        let queryString = `https://api.covid19api.com/live/country/${slug}/status/confirmed`;
+
+        $.ajax({
+            url: queryString,
+            method: "GET",
+            timeout: 0,
+        }).done(function (response) {
+            var highest = response[ Object.keys(response).sort().pop() ];
+            console.log(highest);
+        });
 
     }
 
     function initApp(){
-        getCovidCountries().then(setCountrySlugsAndAutofill).then(function (response){
-            //check URL to determine if in data.html, call populateCountryData(response)
+        getCovidCountries().then(setCountrysAndAutofill).then(function (response){
+
             if(window.location.pathname.includes("data.html")){
-                populateCountryData(response);
-             //if(get currentCountry) 
+                
 
              let urlParams = new URLSearchParams(window.location.search);
                 
-             populateDataPage(urlParams.get("current_country"));
+             populateDataPage(urlParams.get("current_country"), urlParams.get("slug"));
             }
 
         });
@@ -76,13 +82,17 @@ $('document').ready(function () {
     });
 
     countryInputButton.on("click", function () {
-        currentCountry = countryInput.val();
 
+        
+
+        currentCountry = countryInput.val();
+        let queryLogic = countries.find(country => country.Country === currentCountry).Slug;
+        currentCountrySlug = queryLogic;
         console.log("click");
 
         let countryInputText = countryInput.val();
 
-        let queryLogic = countries.find(country => country.Country === currentCountry).Slug;
+        
 
         let queryString = `https://api.covid19api.com/live/country/${queryLogic}`;
 
@@ -95,13 +105,16 @@ $('document').ready(function () {
             console.log(response);
         });
 
-        location.href = "data.html?current_country=" + currentCountry;
-        populateDataPage(currentCountry);
+        location.href = `data.html?current_country=${currentCountry}&slug=${currentCountrySlug}`;
 
     });
 
-    function populateDataPage(country){
+    function populateDataPage(country, slug){
+
+        getCountryData(slug);
+
         countryEl.text(country);
+        console.log(slug);
     }
     $('.modal').modal();
     $('.sidenav').sidenav();
