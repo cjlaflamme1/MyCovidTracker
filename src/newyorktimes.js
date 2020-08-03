@@ -1,6 +1,7 @@
 $('document').ready(function () {
 
     const newsArticles = $('#newsArticles');
+    const savedArticlesDisplay = $('#savedArticlesDisplay');
     let savedNewsArticles = JSON.parse(localStorage.getItem("savedNewsArticles"));
 
     // NY Times API Object
@@ -26,7 +27,7 @@ $('document').ready(function () {
                 const headlineText = response[i].headline.main;
                 const articleLinkURL = response[i].web_url;
 
-                const headline = $("<div>").addClass(`article-headline card-content`).text(headlineText).attr("data-name", `headline${i}`);
+                const headline = $("<h3>").addClass(`article-headline card-content`).text(headlineText).attr("data-name", `headline${i}`);
                 // const abstract = $("<div>").addClass(`article-abstract card-content`).text(response[i].abstract).attr("data-name", `abstract${i}`);
                 const articleLink = $("<a>").addClass(`article-link card-content`).text('Read Full Article').attr('href', articleLinkURL).attr('target', '_blank').attr("data-name", `link${i}`);
                 const saveButton = $("<button>").addClass('button').attr('type', 'button').attr('id','saveButton').text('Save').attr("data-name", `${i}`);
@@ -44,27 +45,40 @@ $('document').ready(function () {
         saveArticle() {
             let articleNumber = $(this).attr('data-name');
             console.log(articleNumber);
-            const article = $('div').attr('data-name', `headline${articleNumber}`);
             console.log(apiNYTimes.newestArticles);
             savedNewsArticles.push(apiNYTimes.newestArticles[articleNumber]);
-            localStorage.setItem("dayCalendar", JSON.stringify(dayCalendar));
+            localStorage.setItem("savedNewsArticles", JSON.stringify(savedNewsArticles));
         },
         loadSavedArticles() {
+            savedArticlesDisplay.text('');
             for (i = 0; i < savedNewsArticles.length; i++) {
                 console.log(savedNewsArticles[i]);
+                
+                
+                const articleDiv = $('<div>').addClass('col card s12 m4 white-text card-content contentSections articleBlock').attr('data-name', `article-${i}`);
+                const titleHeader = $("<h2>").addClass(`article-title`).text(savedNewsArticles[i].title);
+                const articleLink = $("<a>").addClass(`article-link`).text('Read Full Article').attr('href', savedNewsArticles[i].link).attr('target', '_blank');
+                const deleteButton = $("<button>").addClass('button').attr('type', 'button').attr('id','deleteButton').text('Delete').attr("data-name", `${i}`);
+                articleDiv.append(titleHeader, articleLink, deleteButton);
+                savedArticlesDisplay.append(articleDiv);
+                
             }
         },
-    }
-    
-    function saveArticle() {
-        let article = $(this).attr('data-name');
-        console.log(article);
+        deleteArticle() {
+            let articleNumber = $(this).attr('data-name');
+            console.log(articleNumber);
+            savedNewsArticles.splice(apiNYTimes.newestArticles[articleNumber], 1);
+            localStorage.setItem("savedNewsArticles", JSON.stringify(savedNewsArticles));
+            apiNYTimes.loadSavedArticles();
+        }
     }
 
-    $(document).on("click", ".button", apiNYTimes.saveArticle);
+    $(document).on("click", "#saveButton", apiNYTimes.saveArticle);
+    $(document).on("click", "#deleteButton", apiNYTimes.deleteArticle);
 
     if (Array.isArray(savedNewsArticles)) {  // does an array already exist in local storage?
         apiNYTimes.loadSavedArticles();  // if so, load it
+        console.log(`loading of saved articles should have fired`);
     } else {
         savedNewsArticles = [];  // else, create a new array to be saved
     }
