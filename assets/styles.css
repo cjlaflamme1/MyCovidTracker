@@ -1,4 +1,4 @@
-body.indexPage {
+body {
     background-image: url("./earth.jpg");
     background-color: black;
     background-size: cover;
@@ -8,17 +8,10 @@ body.indexPage {
     width: auto;
 }
 
-body.personalPage {
-    background-color: #37474f;
-}
-
 div.contentSections {
     background-color: rgba(100, 100, 100, .9);
 }
 
-div.articleBlock {
-    background-color: #bbdefb;
-}
 
 div.articleRow {
     margin-bottom: 0;
@@ -67,4 +60,32 @@ img.cdcImage {
 
 div.modal.bottom-sheet {
     max-height: 65%;
+}
+
+.searchLabel {
+    color: #000000;
+    font-size: x-large;
+}
+
+.newSearchBtn {
+    margin-left: 10px;
+}
+
+.contentSearch {
+    color: #ffffff;
+    font-size: x-large;
+    margin: 10px;
+}
+
+input#search {
+    background-color: #ffffff;
+}
+
+.newContentBtn {
+    margin: 5px;
+}
+
+.articles {
+    background-color: #ffffff;
+    margin: 0px;
 }
