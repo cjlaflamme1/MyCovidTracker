@@ -22,10 +22,10 @@ $('document').ready(function () {
         displayRecentArticles(response) {
             for (i = 0; i < 6; i++) {
                 num = i + 1;
-                const headline = $("<div>").addClass(`article-headline card-content`).text(response[i].headline.main);
-                const abstract = $("<div>").addClass(`article-abstract card-content`).text(response[i].abstract);
-                const articleLink = $("<a>").addClass(`article-link card-content`).text('Read Full Article').attr('href', response[i].web_url).attr('target', '_blank');
-                const saveButton = $("<button>").addClass('button').attr('type', 'button').attr('id', 'saveButton').text('Save');
+                const headline = $("<div>").addClass(`article-headline card-content`).text(response[i].headline.main).attr("data-name", `headline${i}`);
+                const abstract = $("<div>").addClass(`article-abstract card-content`).text(response[i].abstract).attr("data-name", `abstract${i}`);
+                const articleLink = $("<a>").addClass(`article-link card-content`).text('Read Full Article').attr('href', response[i].web_url).attr('target', '_blank').attr("data-name", `link${i}`);
+                const saveButton = $("<button>").addClass('button').attr('type', 'button').attr('id','saveButton').text('Save').attr("data-name", `${i}`);
 
                 const newsArticleDiv = $("<div>").addClass(`articles card-content col s12 m5`).attr("data-name", `article${i}`);
                 newsArticleDiv.append(headline, abstract, articleLink, saveButton);
@@ -33,7 +33,9 @@ $('document').ready(function () {
             }
         },
         saveArticle() {
-            const article = $("<div>").attr('data-name');
+            let articleNumber = $(this).attr('data-name');
+            console.log(articleNumber);
+            const article = $('div').attr('data-name', `headline${articleNumber}`);
             console.log(article);
         },
         loadSavedArticles() {
@@ -42,17 +44,20 @@ $('document').ready(function () {
             }
         },
     }
+    
+    function saveArticle() {
+        let article = $(this).attr('data-name');
+        console.log(article);
+    }
 
-    apiNYTimes.call();
-
-    $(document).on("click", "#saveButton", function () {
-        apiNYTimes.saveArticle();
-    });
+    $(document).on("click", ".button", apiNYTimes.saveArticle);
 
     if (Array.isArray(savedNewsArticles)) {  // does an array already exist in local storage?
         apiNYTimes.loadSavedArticles();  // if so, load it
     } else {
         savedNewsArticles = [];  // else, create a new array to be saved
     }
+
+    apiNYTimes.call();
 
 });
