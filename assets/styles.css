@@ -67,7 +67,7 @@ div.modal.bottom-sheet {
 }
 
 .searchLabel {
-    color: #000000;
+    color: #ffffff;
     font-size: x-large;
 }
 
@@ -90,6 +90,17 @@ input#search {
 }
 
 .articles {
-    background-color: #ffffff;
+    background-color: rgba(100, 100, 100, .9);
     margin: 0px;
+    border: 1px solid white;
+    color: #ffffff;
+    height: 200px;
+    width: auto;
+}
+
+div.newSearch {
+    background-color: rgba(100, 100, 100, .9);
+    margin: 0px;
+    /* border: 1px solid white; */
+    color: #ffffff;
 }
