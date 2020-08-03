@@ -21,6 +21,10 @@ div.articleRow {
     margin-bottom: 0;
 }
 
+label.countryInput {
+    color: #ffffff;
+    font-size: x-large;
+}
 
 button#countryInputButton {
     width: 100%;

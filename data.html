@@ -12,7 +12,8 @@
 
 </head>
 
-<body class="dataPage">
+<body>
+    <!-- Navigation Bar -->
     <nav>
         <div class="nav-wrapper">
             <a href="index.html" class="brand-logo">My Covid Tracker</a>
@@ -27,12 +28,14 @@
         <li class="active"><a href="personal.html">Personal Collection</a></li>
         <li><a href="data.html">Search Country and Articles</a></li>
     </ul>
+<!-- Box With Name of Searched Country -->
     <main class="container">
         <div class="row contentSections">
             <div class="card populatedCountry col s6 m4">
                 <h3>Country</h3>
             </div>
             <div class="col s0 m4"></div>
+<!-- Search Box For Different Countries Stats -->
             <div class="row">
                 <div class="newSearch col s6 m4">
                     <label class="searchLabel">New Search</label>
@@ -44,10 +47,7 @@
                 </div>
             </div>
         </div>
-
-        </div>
-
-        </div>
+<!-- Populated Covid Data from Searched Country -->
         <section class="row">
             <div class="card contentSections">
                 <div class="card-content s12">
@@ -55,6 +55,7 @@
                 </div>
             </div>
         </section>
+        <!-- Populated Covid Articles from NYT for Searched Country -->
         <section class="row">
             
             <div class="card contentSections s12">
@@ -65,6 +66,7 @@
                         <button class="newContentBtn waves-effect waves-light btn-small col s2 m3" type="button"><i
                                 class="material-icons">search</i></button>
                     </div>
+
                 </div>
                 <div class="row" id="newsArticles"></div>
             </div>
