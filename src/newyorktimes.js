@@ -5,11 +5,7 @@ $('document').ready(function () {
 
     // NY Times API Object
     const apiNYTimes = {
-        newArticleArray: [
-            {
-
-            }
-        ],
+        newestArticles: [],
         refactorInputLocation() {
             console.log('placeholder');
         },
@@ -28,23 +24,30 @@ $('document').ready(function () {
             for (i = 0; i < 6; i++) {
                 num = i + 1;
                 const headlineText = response[i].headline.main;
-                const abstract
+                const articleLinkURL = response[i].web_url;
 
                 const headline = $("<div>").addClass(`article-headline card-content`).text(headlineText).attr("data-name", `headline${i}`);
                 // const abstract = $("<div>").addClass(`article-abstract card-content`).text(response[i].abstract).attr("data-name", `abstract${i}`);
-                const articleLink = $("<a>").addClass(`article-link card-content`).text('Read Full Article').attr('href', response[i].web_url).attr('target', '_blank').attr("data-name", `link${i}`);
+                const articleLink = $("<a>").addClass(`article-link card-content`).text('Read Full Article').attr('href', articleLinkURL).attr('target', '_blank').attr("data-name", `link${i}`);
                 const saveButton = $("<button>").addClass('button').attr('type', 'button').attr('id','saveButton').text('Save').attr("data-name", `${i}`);
 
                 const newsArticleDiv = $("<div>").addClass(`articles card-content col s12 m5`).attr("data-name", `article${i}`);
                 newsArticleDiv.append(headline, articleLink, saveButton);
                 newsArticles.append(newsArticleDiv);
+                const recentArticleObject = {
+                        title: headlineText,
+                        link: articleLinkURL
+                }
+                apiNYTimes.newestArticles.push(recentArticleObject);
             }
         },
         saveArticle() {
             let articleNumber = $(this).attr('data-name');
             console.log(articleNumber);
             const article = $('div').attr('data-name', `headline${articleNumber}`);
-            console.log(article);
+            console.log(apiNYTimes.newestArticles);
+            savedNewsArticles.push(apiNYTimes.newestArticles[articleNumber]);
+            localStorage.setItem("dayCalendar", JSON.stringify(dayCalendar));
         },
         loadSavedArticles() {
             for (i = 0; i < savedNewsArticles.length; i++) {
