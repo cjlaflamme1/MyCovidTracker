@@ -6,6 +6,7 @@ body {
     background-image: url("./earth.jpg");
     background-color: black;
     background-size: cover;
+    background-attachment: fixed;
     background-repeat: no-repeat;
     background-position: center;
     height: 100%;
