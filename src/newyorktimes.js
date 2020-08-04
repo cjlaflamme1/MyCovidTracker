@@ -2,7 +2,9 @@ $('document').ready(function () {
 
     const newsArticles = $('#newsArticles');
     const savedArticlesDisplay = $('#savedArticlesDisplay');
+    const userInputSearchTerm = $('#search').text();
     let savedNewsArticles = JSON.parse(localStorage.getItem("savedNewsArticles"));
+    const searchedCountry = '';
 
     // NY Times API Object
     const apiNYTimes = {
@@ -11,10 +13,16 @@ $('document').ready(function () {
             console.log('placeholder');
         },
         call() {
-            const test = '';
-            let userInputLocation = `+${test}`;
+            let userInputLocation = `${searchedCountry}`;
+            let term = '';
+            if (userInputSearchTerm === '') {
+                term = 'Coronavirus+COVID+COVID19';
+            } else {
+                term = userInputSearchTerm;
+            }
+            let searchTerm = `+${term}`;
             $.ajax({
-                url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=Coronavirus+COVID+COVID19${userInputLocation}&sort=newest&api-key=9dBz5iLUOkToYiTEjcz0mgrNxq65pGzm`,
+                url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${searchTerm}&${userInputLocation}&sort=newest&api-key=9dBz5iLUOkToYiTEjcz0mgrNxq65pGzm`,
                 method: "GET"
             }).then(function (response) {
                 console.log(response.response.docs);  // r.r.docs accesses 10 first articles to match search criteria
@@ -22,7 +30,8 @@ $('document').ready(function () {
             });
         },
         newSearch() {
-            console.log('this is fo-real');
+            console.log(searchTerm.length);
+            apiNYTimes.call();
         },
         displayRecentArticles(response) {
             for (i = 0; i < 6; i++) {
@@ -31,7 +40,6 @@ $('document').ready(function () {
                 const articleLinkURL = response[i].web_url;
 
                 const headline = $("<h3>").addClass(`article-title card-content`).text(headlineText).attr("data-name", `headline${i}`);
-                // const abstract = $("<div>").addClass(`article-abstract card-content`).text(response[i].abstract).attr("data-name", `abstract${i}`);
                 const articleLink = $("<a>").addClass(`article-link card-content`).text('Read Full Article').attr('href', articleLinkURL).attr('target', '_blank').attr("data-name", `link${i}`);
                 const saveButton = $("<button>").addClass('button waves-effect waves-light btn-small').attr('type', 'button').attr('id','saveButton').text('Save').attr("data-name", `${i}`);
 
@@ -82,7 +90,6 @@ $('document').ready(function () {
 
     if (Array.isArray(savedNewsArticles)) {  // does an array already exist in local storage?
         apiNYTimes.loadSavedArticles();  // if so, load it
-        console.log(`loading of saved articles should have fired`);
     } else {
         savedNewsArticles = [];  // else, create a new array to be saved
     }
