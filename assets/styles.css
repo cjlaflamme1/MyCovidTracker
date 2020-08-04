@@ -106,9 +106,19 @@ input#search {
 }
 
 div.newSearch {
-    background-color: rgba(100, 100, 100, .9);
+    background-color: transparent;
     margin: 0px;
-    /* border: 1px solid white; */
+    color: #ffffff;
+}
+
+div.populatedCountry {
+    
+    background-color: transparent;
+    margin: 0px;
+    color: #ffffff;
+}
+input#search {
+    background-color: transparent;
     color: #ffffff;
 }
 
