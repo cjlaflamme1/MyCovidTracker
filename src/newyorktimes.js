@@ -33,7 +33,7 @@ $('document').ready(function () {
                 const headline = $("<h3>").addClass(`article-title card-content`).text(headlineText).attr("data-name", `headline${i}`);
                 // const abstract = $("<div>").addClass(`article-abstract card-content`).text(response[i].abstract).attr("data-name", `abstract${i}`);
                 const articleLink = $("<a>").addClass(`article-link card-content`).text('Read Full Article').attr('href', articleLinkURL).attr('target', '_blank').attr("data-name", `link${i}`);
-                const saveButton = $("<button>").addClass('button').attr('type', 'button').attr('id','saveButton').text('Save').attr("data-name", `${i}`);
+                const saveButton = $("<button>").addClass('button waves-effect waves-light btn-small').attr('type', 'button').attr('id','saveButton').text('Save').attr("data-name", `${i}`);
 
                 const newsArticleDiv = $("<div>").addClass(`articles card-content col s12 m4`).attr("data-name", `article${i}`);
                 newsArticleDiv.append(headline, articleLink, saveButton);
@@ -58,10 +58,10 @@ $('document').ready(function () {
                 console.log(savedNewsArticles[i]);
                 
                 
-                const articleDiv = $('<div>').addClass('col card s12 m4 white-text card-content contentSections articleBlock').attr('data-name', `article-${i}`);
+                const articleDiv = $('<div>').addClass('col card s12 m4 articles white-text card-content contentSections articleBlock').attr('data-name', `article-${i}`);
                 const titleHeader = $("<h2>").addClass(`article-title`).text(savedNewsArticles[i].title);
-                const articleLink = $("<a>").addClass(`article-link`).text('Read Full Article').attr('href', savedNewsArticles[i].link).attr('target', '_blank');
-                const deleteButton = $("<button>").addClass('button').attr('type', 'button').attr('id','deleteButton').text('Delete').attr("data-name", `${i}`);
+                const articleLink = $("<a>").addClass(`article-link card-content`).text('Read Full Article').attr('href', savedNewsArticles[i].link).attr('target', '_blank');
+                const deleteButton = $("<button>").addClass('button waves-effect waves-light btn-small').attr('type', 'button').attr('id','deleteButton').text('Delete').attr("data-name", `${i}`);
                 articleDiv.append(titleHeader, articleLink, deleteButton);
                 savedArticlesDisplay.append(articleDiv);
                 
