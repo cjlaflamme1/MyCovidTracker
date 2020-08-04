@@ -1,5 +1,6 @@
 
 let countries = [];
+let data = [];
 let countryNames = null;
 let currentCountry = "";
 let currentCountrySlug = "";
@@ -47,9 +48,11 @@ $('document').ready(function () {
 
     function getCountryData(slug) {
 
-        
-
-        let queryString = `https://api.covid19api.com/live/country/${slug}/status/confirmed`;
+        let today = moment().format().slice(0, 10);
+        console.log(today);
+        //https://api.covid19api.com/live/country/south-africa/status/confirmed/date/2020-03-21T13:13:30Z
+       // let queryString = `https://api.covid19api.com/live/country/${slug}/status/confirmed/date/${today}T12:00:00Z`
+        let queryString = `https://api.covid19api.com/country/${slug}/status/confirmed`;
 
         $.ajax({
             url: queryString,
@@ -57,7 +60,14 @@ $('document').ready(function () {
             timeout: 0,
         }).done(function (response) {
             //var highest = response[ Object.keys(response).sort().pop() ];
+            data = response;
+            
             console.log(response);
+            let {Active, Confirmed, Deaths, Recovered} = data.reverse().find(response => response.Province === "");
+
+            let thingy = response.find(response => response.Province === "");
+            
+            console.log(`${Active},${Confirmed},${Deaths},${Recovered}`);
         });
 
     }
@@ -71,6 +81,7 @@ $('document').ready(function () {
              let urlParams = new URLSearchParams(window.location.search);
                 
              populateDataPage(urlParams.get("current_country"), urlParams.get("slug"));
+
             }
 
         });
@@ -83,16 +94,13 @@ $('document').ready(function () {
 
     countryInputButton.on("click", function () {
 
-        
-
         currentCountry = countryInput.val();
         let { Slug } = countries.find(country => country.Country === currentCountry);
+
         currentCountrySlug = Slug;
         console.log("click");
 
         let countryInputText = countryInput.val();
-
-        
 
         let queryString = `https://api.covid19api.com/live/country/${Slug}`;
 
@@ -111,6 +119,8 @@ $('document').ready(function () {
 
     function populateDataPage(country, slug){
 
+        currentCountry = country;
+        currentCountrySlug = slug;
         getCountryData(slug);
 
         countryEl.text(country);
