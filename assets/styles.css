@@ -16,6 +16,9 @@ div.contentSections {
     background-color: rgba(100, 100, 100, .9);
 }
 
+p.countryData {
+    font-size: x-large;
+}
 
 div.articleRow {
     margin-bottom: 0;
