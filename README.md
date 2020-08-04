@@ -56,9 +56,9 @@ Project Link: [Git Hub Pages URL goes here](Git Hub Pages URL goes here)
 # Contact
 
 ## Alex Bertrand
-* email
+* [alex.m.bertrand@gmail.com](alex.m.bertrand@gmail.com)
 * [https://github.com/ambertrand](https://github.com/ambertrand)
-* LinkedIn
+* [www.linkedin.com/in/alex-bertrand/](https://www.linkedin.com/in/alex-bertrand/)
 
 ## Brendan Leighton
 
