@@ -6,6 +6,7 @@ body {
     background-image: url("./earth.jpg");
     background-color: black;
     background-size: cover;
+    background-attachment: fixed;
     background-repeat: no-repeat;
     background-position: center;
     height: 100%;
@@ -16,6 +17,9 @@ div.contentSections {
     background-color: rgba(100, 100, 100, .9);
 }
 
+p.countryData {
+    font-size: x-large;
+}
 
 div.articleRow {
     margin-bottom: 0;
@@ -103,9 +107,19 @@ input#search {
 }
 
 div.newSearch {
-    background-color: rgba(100, 100, 100, .9);
+    background-color: transparent;
     margin: 0px;
-    /* border: 1px solid white; */
+    color: #ffffff;
+}
+
+div.populatedCountry {
+    
+    background-color: transparent;
+    margin: 0px;
+    color: #ffffff;
+}
+input#search {
+    background-color: transparent;
     color: #ffffff;
 }
 
