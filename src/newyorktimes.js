@@ -19,15 +19,13 @@ $('document').ready(function () {
             } else {
                 term = userInputSearchTerm;
             }
-            let searchTerm = `+${term}`;
+            let searchTerm = term;
             console.log(searchTerm.length);
             $.ajax({
-                url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${searchTerm}&location=${searchLocation}&sort=newest&api-key=9dBz5iLUOkToYiTEjcz0mgrNxq65pGzm`,
-                // url: `http://api.nytimes.com/svc/semantic/v2/concept/name/nytd_des/${searchTerm}.json?mytd_geo/${searchLocation}&api-key=your-API-key
-                // `,
+                url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${searchTerm}&fq=glocations:Japan&sort=newest&api-key=9dBz5iLUOkToYiTEjcz0mgrNxq65pGzm`,
                 method: "GET"
             }).then(function (response) {
-                // console.log(response);
+                console.log(response);
                 console.log(response.response.docs);  // r.r.docs accesses 10 first articles to match search criteria
                 apiNYTimes.displayRecentArticles(response.response.docs);
             });
@@ -38,6 +36,8 @@ $('document').ready(function () {
         displayRecentArticles(response) {
             for (i = 0; i < 6; i++) {
                 num = i + 1;
+                // const headlineText = response[i];
+                // const articleLinkURL = response[i].web_url;
                 const headlineText = response[i].headline.main;
                 const articleLinkURL = response[i].web_url;
 
