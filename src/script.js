@@ -56,8 +56,8 @@ $('document').ready(function () {
             method: "GET",
             timeout: 0,
         }).done(function (response) {
-            var highest = response[ Object.keys(response).sort().pop() ];
-            console.log(highest);
+            //var highest = response[ Object.keys(response).sort().pop() ];
+            console.log(response);
         });
 
     }
@@ -86,15 +86,15 @@ $('document').ready(function () {
         
 
         currentCountry = countryInput.val();
-        let queryLogic = countries.find(country => country.Country === currentCountry).Slug;
-        currentCountrySlug = queryLogic;
+        let { Slug } = countries.find(country => country.Country === currentCountry);
+        currentCountrySlug = Slug;
         console.log("click");
 
         let countryInputText = countryInput.val();
 
         
 
-        let queryString = `https://api.covid19api.com/live/country/${queryLogic}`;
+        let queryString = `https://api.covid19api.com/live/country/${Slug}`;
 
         $.ajax({
             url: queryString,
