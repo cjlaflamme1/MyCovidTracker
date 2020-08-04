@@ -30,7 +30,7 @@ $('document').ready(function () {
                 const headlineText = response[i].headline.main;
                 const articleLinkURL = response[i].web_url;
 
-                const headline = $("<h3>").addClass(`article-headline card-content`).text(headlineText).attr("data-name", `headline${i}`);
+                const headline = $("<h3>").addClass(`article-title card-content`).text(headlineText).attr("data-name", `headline${i}`);
                 // const abstract = $("<div>").addClass(`article-abstract card-content`).text(response[i].abstract).attr("data-name", `abstract${i}`);
                 const articleLink = $("<a>").addClass(`article-link card-content`).text('Read Full Article').attr('href', articleLinkURL).attr('target', '_blank').attr("data-name", `link${i}`);
                 const saveButton = $("<button>").addClass('button').attr('type', 'button').attr('id','saveButton').text('Save').attr("data-name", `${i}`);
