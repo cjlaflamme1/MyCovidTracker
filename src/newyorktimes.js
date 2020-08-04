@@ -4,7 +4,6 @@ $('document').ready(function () {
     const savedArticlesDisplay = $('#savedArticlesDisplay');
     const userInputSearchTerm = $('#search').text();
     let savedNewsArticles = JSON.parse(localStorage.getItem("savedNewsArticles"));
-    const searchedCountry = '';
 
     // NY Times API Object
     const apiNYTimes = {
@@ -13,7 +12,7 @@ $('document').ready(function () {
             console.log('placeholder');
         },
         call() {
-            let userInputLocation = `${searchedCountry}`;
+            let searchLocation = `${currentCountry}`;
             let term = '';
             if (userInputSearchTerm === '') {
                 term = 'Coronavirus+COVID+COVID19';
@@ -21,16 +20,19 @@ $('document').ready(function () {
                 term = userInputSearchTerm;
             }
             let searchTerm = `+${term}`;
+            console.log(searchTerm.length);
             $.ajax({
-                url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${searchTerm}&${userInputLocation}&sort=newest&api-key=9dBz5iLUOkToYiTEjcz0mgrNxq65pGzm`,
+                url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${searchTerm}&location=${searchLocation}&sort=newest&api-key=9dBz5iLUOkToYiTEjcz0mgrNxq65pGzm`,
+                // url: `http://api.nytimes.com/svc/semantic/v2/concept/name/nytd_des/${searchTerm}.json?mytd_geo/${searchLocation}&api-key=your-API-key
+                // `,
                 method: "GET"
             }).then(function (response) {
+                // console.log(response);
                 console.log(response.response.docs);  // r.r.docs accesses 10 first articles to match search criteria
                 apiNYTimes.displayRecentArticles(response.response.docs);
             });
         },
         newSearch() {
-            console.log(searchTerm.length);
             apiNYTimes.call();
         },
         displayRecentArticles(response) {
