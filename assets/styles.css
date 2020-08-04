@@ -1,3 +1,7 @@
+nav {
+    background-color: rgba(100, 100, 100, .9)
+}
+
 body {
     background-image: url("./earth.jpg");
     background-color: black;
@@ -94,7 +98,7 @@ input#search {
     margin: 0px;
     border: 1px solid white;
     color: #ffffff;
-    height: 200px;
+    height: 250px;
     width: auto;
 }
 
@@ -103,4 +107,9 @@ div.newSearch {
     margin: 0px;
     /* border: 1px solid white; */
     color: #ffffff;
+}
+
+h2.article-title,
+h3.article-title {
+    font-size: 15px;
 }
