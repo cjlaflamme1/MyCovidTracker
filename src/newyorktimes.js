@@ -1,9 +1,10 @@
 $('document').ready(function () {
-
+    const searchedCountryNameDisplay = $('#searchedCountryNameDisplay');
     const newsArticles = $('#newsArticles');
     const savedArticlesDisplay = $('#savedArticlesDisplay');
     const userInputSearchTerm = $('#search').text();
     let savedNewsArticles = JSON.parse(localStorage.getItem("savedNewsArticles"));
+    let searchLocation = '';
 
     // NY Times API Object
     const apiNYTimes = {
@@ -12,7 +13,9 @@ $('document').ready(function () {
             console.log('placeholder');
         },
         call() {
-            let searchLocation = `${currentCountry}`;
+            if (searchedCountryNameDisplay.text().length !== 0) {
+                searchLocation = `&fq=glocations:${searchedCountryNameDisplay.text()}`;
+            }
             let term = '';
             if (userInputSearchTerm === '') {
                 term = 'Coronavirus+COVID+COVID19';
@@ -21,8 +24,9 @@ $('document').ready(function () {
             }
             let searchTerm = term;
             console.log(searchTerm.length);
+            console.log(`https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${searchTerm}&${searchLocation}sort=newest&api-key=9dBz5iLUOkToYiTEjcz0mgrNxq65pGzm`);
             $.ajax({
-                url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${searchTerm}&fq=glocations:Japan&sort=newest&api-key=9dBz5iLUOkToYiTEjcz0mgrNxq65pGzm`,
+                url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${searchTerm}${searchLocation}&sort=newest&api-key=9dBz5iLUOkToYiTEjcz0mgrNxq65pGzm`,
                 method: "GET"
             }).then(function (response) {
                 console.log(response);
@@ -89,13 +93,15 @@ $('document').ready(function () {
     $(document).on("click", "#saveButton", apiNYTimes.saveArticle);
     $(document).on("click", "#deleteButton", apiNYTimes.deleteArticle);
     $(document).on('click', '.newContentBtn', apiNYTimes.newSearch);
+    
+
+    if(window.location.pathname.includes("data.html")){
+        $(window).on('load', apiNYTimes.call);
+    }
 
     if (Array.isArray(savedNewsArticles)) {  // does an array already exist in local storage?
         apiNYTimes.loadSavedArticles();  // if so, load it
     } else {
         savedNewsArticles = [];  // else, create a new array to be saved
     }
-
-    apiNYTimes.call();
-
 });
