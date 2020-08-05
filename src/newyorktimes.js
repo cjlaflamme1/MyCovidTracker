@@ -2,7 +2,6 @@ $('document').ready(function () {
     const searchedCountryNameDisplay = $('#searchedCountryNameDisplay');
     const newsArticles = $('#newsArticles');
     const savedArticlesDisplay = $('#savedArticlesDisplay');
-    const userInputSearchTerm = $('#search').text();
     let savedNewsArticles = JSON.parse(localStorage.getItem("savedNewsArticles"));
     let searchLocation = '';
 
@@ -13,18 +12,22 @@ $('document').ready(function () {
             console.log('placeholder');
         },
         call() {
-            if (searchedCountryNameDisplay.text().length !== 0) {
+            const userInputSearchTerm = $('#search');
+            if (searchedCountryNameDisplay.text().length !== 0 && searchedCountryNameDisplay.text() !== 'Country') {
                 searchLocation = `&fq=glocations:${searchedCountryNameDisplay.text()}`;
             }
             let term = '';
-            if (userInputSearchTerm === '') {
-                term = 'Coronavirus+COVID+COVID19';
+            if (userInputSearchTerm.val().length <= 0) {
+                term = 'Coronavirus';
             } else {
-                term = userInputSearchTerm;
+                term = `Coronavirus+${userInputSearchTerm.val()}`;
+                console.log(`concatenated users term input`);
             }
             let searchTerm = term;
-            console.log(searchTerm.length);
-            console.log(`https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${searchTerm}&${searchLocation}sort=newest&api-key=9dBz5iLUOkToYiTEjcz0mgrNxq65pGzm`);
+            console.log(`search term length => ${searchTerm.length}`);
+            console.log(`searchTerm => ${searchTerm}`);
+            console.log(`userInputSearchTerm => ${userInputSearchTerm.val()}`);
+            console.log(`https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${searchTerm}${searchLocation}&sort=newest&api-key=9dBz5iLUOkToYiTEjcz0mgrNxq65pGzm`);
             $.ajax({
                 url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${searchTerm}${searchLocation}&sort=newest&api-key=9dBz5iLUOkToYiTEjcz0mgrNxq65pGzm`,
                 method: "GET"
@@ -34,14 +37,14 @@ $('document').ready(function () {
                 apiNYTimes.displayRecentArticles(response.response.docs);
             });
         },
-        newSearch() {
+        callNew() {
+            
+            $('.articles').remove();
             apiNYTimes.call();
         },
         displayRecentArticles(response) {
             for (i = 0; i < 6; i++) {
                 num = i + 1;
-                // const headlineText = response[i];
-                // const articleLinkURL = response[i].web_url;
                 const headlineText = response[i].headline.main;
                 const articleLinkURL = response[i].web_url;
 
@@ -92,7 +95,7 @@ $('document').ready(function () {
 
     $(document).on("click", "#saveButton", apiNYTimes.saveArticle);
     $(document).on("click", "#deleteButton", apiNYTimes.deleteArticle);
-    $(document).on('click', '.newContentBtn', apiNYTimes.newSearch);
+    $(document).on('click', '.newContentBtn', apiNYTimes.callNew);
     
 
     if(window.location.pathname.includes("data.html")){
@@ -104,4 +107,5 @@ $('document').ready(function () {
     } else {
         savedNewsArticles = [];  // else, create a new array to be saved
     }
+    console.log(window.location.search);
 });
