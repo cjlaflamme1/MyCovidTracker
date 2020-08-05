@@ -1,12 +1,14 @@
 
 let countries = [];
+let data = [];
 let countryNames = null;
 let currentCountry = "";
-let countrySlugs = {};
+let currentCountrySlug = "";
 let date = null;
+let apiKeyHeaderValue = "?X-Access-Token=019519e3-a704-4f40-9b74-82b632cd0c22";
 $('document').ready(function () {
     // index Variables
-    const countryInput = $('#countryInput');
+    const countryInput = $('.autocomplete');
     const countryInputButton = $('#countryInputButton');
     const dataField = $(".contentSections .card-content");
 
@@ -18,18 +20,14 @@ $('document').ready(function () {
 
     function getCovidCountries(){
         return $.ajax({
-            url: 'https://api.covid19api.com/countries',
+            url: `https://api.covid19api.com/countries${apiKeyHeaderValue}`,
             method: "GET",
             timeout: 0,
         });
     }
 
-    function setCountrySlugsAndAutofill(response){
+    function setCountrysAndAutofill(response){
 
-        countrySlugs = countries.reduce(function (accumulator, currentValue) {
-                accumulator[currentValue.Country] = currentValue.Country.Slug;
-                return accumulator;
-            }, {});
 
             countries = response;
             //console.log(countries.find(country => country.Country === "United States of America").Slug);
@@ -49,22 +47,42 @@ $('document').ready(function () {
             return Promise.resolve(response);
     }
 
-    function populateCountryData(response) {
+    function getCountryData(slug) {
 
-        //use response to populate DOM
+        let today = moment().format().slice(0, 10);
+        console.log(today);
+        //https://api.covid19api.com/live/country/south-africa/status/confirmed/date/2020-03-21T13:13:30Z
+       // let queryString = `https://api.covid19api.com/live/country/${slug}/status/confirmed/date/${today}T12:00:00Z`
+        let queryString = `https://api.covid19api.com/live/country/${slug}/status/confirmed?X-Access-Token=019519e3-a704-4f40-9b74-82b632cd0c22`;
+
+        $.ajax({
+            url: queryString,
+            method: "GET",
+            timeout: 0,
+        }).done(function (response) {
+            //var highest = response[ Object.keys(response).sort().pop() ];
+            data = response;
+            
+            console.log(response);
+            let {Active, Confirmed, Deaths, Recovered} = data.reverse().find(response => response.Province === "");
+
+            let thingy = response.find(response => response.Province === "");
+            
+            console.log(`${Active},${Confirmed},${Deaths},${Recovered}`);
+        });
 
     }
 
     function initApp(){
-        getCovidCountries().then(setCountrySlugsAndAutofill).then(function (response){
-            //check URL to determine if in data.html, call populateCountryData(response)
+        getCovidCountries().then(setCountrysAndAutofill).then(function (response){
+
             if(window.location.pathname.includes("data.html")){
-                populateCountryData(response);
-             //if(get currentCountry) 
+                
 
              let urlParams = new URLSearchParams(window.location.search);
                 
-             populateDataPage(urlParams.get("current_country"));
+             populateDataPage(urlParams.get("current_country"), urlParams.get("slug"));
+
             }
 
         });
@@ -76,15 +94,16 @@ $('document').ready(function () {
     });
 
     countryInputButton.on("click", function () {
-        currentCountry = countryInput.val();
 
+        currentCountry = countryInput.val();
+        let { Slug } = countries.find(country => country.Country === currentCountry);
+
+        currentCountrySlug = Slug;
         console.log("click");
 
         let countryInputText = countryInput.val();
 
-        let queryLogic = countries.find(country => country.Country === currentCountry).Slug;
-
-        let queryString = `https://api.covid19api.com/live/country/${queryLogic}`;
+        let queryString = `https://api.covid19api.com/live/country/${Slug}${apiKeyHeaderValue}`;
 
         $.ajax({
             url: queryString,
@@ -95,13 +114,18 @@ $('document').ready(function () {
             console.log(response);
         });
 
-        location.href = "data.html?current_country=" + currentCountry;
-        populateDataPage(currentCountry);
-        
+        location.href = `data.html?current_country=${currentCountry}&slug=${currentCountrySlug}`;
+
     });
 
-    function populateDataPage(country){
+    function populateDataPage(country, slug){
+
+        currentCountry = country;
+        currentCountrySlug = slug;
+        getCountryData(slug);
+
         countryEl.text(country);
+        console.log(slug);
     }
     $('.modal').modal();
     $('.sidenav').sidenav();
