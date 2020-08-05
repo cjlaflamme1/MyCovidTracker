@@ -43,11 +43,15 @@ $('document').ready(function () {
             }).then(function (response) {
                 console.log(response);
                 console.log(response.response.docs);  // r.r.docs accesses 10 first articles to match search criteria
-                apiNYTimes.displayRecentArticles(response.response.docs);
+                if (response.response.docs.length > 0) {
+                    apiNYTimes.displayRecentArticles(response.response.docs);
+                } else {
+                    apiNYTimes.displayErrorMessage();
+                }
+                
             });
         },
         callNew() {
-
             $('.articles').remove();
             apiNYTimes.call();
         },
@@ -70,6 +74,11 @@ $('document').ready(function () {
                 }
                 apiNYTimes.newestArticles.push(recentArticleObject);
             }
+        },
+        displayErrorMessage() {
+            const country = searchedCountryNameDisplay.text();
+            const errorMessage = $('<div>').addClass('articles').text(`There are no search results for ${country}`)
+            newsArticles.append(errorMessage);
         },
         saveArticle() {
             let articleNumber = $(this).attr('data-name');
@@ -103,11 +112,12 @@ $('document').ready(function () {
     }
 
     // 
-    //  EVENT LISTENERS - click click
+    //  EVENT LISTENERS - click clack pow, another function down
     //     
     $(document).on("click", "#saveButton", apiNYTimes.saveArticle);
     $(document).on("click", "#deleteButton", apiNYTimes.deleteArticle);
     $(document).on('click', '.newContentBtn', apiNYTimes.callNew);
+    $('.newSearchBtn').on('click', apiNYTimes.callNew);
     // 
     //  RUN ON PAGE LOAD
     //     
