@@ -21,6 +21,18 @@ p.countryData {
     font-size: x-large;
 }
 
+p#deaths {
+    color: red;
+}
+
+p#recovered {
+    color: green;
+}
+
+p#active {
+    color: yellow;
+}
+
 div.articleRow {
     margin-bottom: 0;
 }
