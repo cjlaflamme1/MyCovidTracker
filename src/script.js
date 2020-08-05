@@ -97,7 +97,7 @@ $('document').ready(function () {
 
         location.href = "data.html?current_country=" + currentCountry;
         populateDataPage(currentCountry);
-
+        
     });
 
     function populateDataPage(country){
@@ -106,5 +106,10 @@ $('document').ready(function () {
     $('.modal').modal();
     $('.sidenav').sidenav();
     initApp();
+
+    // Brendan added this for the new country search button on data.html
+    $('.newSearchBtn').on('click', function () {
+        populateDataPage($('#newCountrySearch').val());
+    });
 
 });
