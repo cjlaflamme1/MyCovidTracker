@@ -53,7 +53,7 @@ $('document').ready(function () {
         console.log(today);
         //https://api.covid19api.com/live/country/south-africa/status/confirmed/date/2020-03-21T13:13:30Z
        // let queryString = `https://api.covid19api.com/live/country/${slug}/status/confirmed/date/${today}T12:00:00Z`
-        let queryString = `https://api.covid19api.com/country/${slug}/status/confirmed?X-Access-Token=019519e3-a704-4f40-9b74-82b632cd0c22`;
+        let queryString = `https://api.covid19api.com/live/country/${slug}/status/confirmed?X-Access-Token=019519e3-a704-4f40-9b74-82b632cd0c22`;
 
         $.ajax({
             url: queryString,
