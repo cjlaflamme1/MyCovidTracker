@@ -5,9 +5,10 @@ let countryNames = null;
 let currentCountry = "";
 let currentCountrySlug = "";
 let date = null;
+let apiKeyHeaderValue = "?X-Access-Token=019519e3-a704-4f40-9b74-82b632cd0c22";
 $('document').ready(function () {
     // index Variables
-    const countryInput = $('#countryInput');
+    const countryInput = $('.autocomplete');
     const countryInputButton = $('#countryInputButton');
     const dataField = $(".contentSections .card-content");
 
@@ -19,7 +20,7 @@ $('document').ready(function () {
 
     function getCovidCountries(){
         return $.ajax({
-            url: 'https://api.covid19api.com/countries',
+            url: `https://api.covid19api.com/countries${apiKeyHeaderValue}`,
             method: "GET",
             timeout: 0,
         });
@@ -52,7 +53,7 @@ $('document').ready(function () {
         console.log(today);
         //https://api.covid19api.com/live/country/south-africa/status/confirmed/date/2020-03-21T13:13:30Z
        // let queryString = `https://api.covid19api.com/live/country/${slug}/status/confirmed/date/${today}T12:00:00Z`
-        let queryString = `https://api.covid19api.com/country/${slug}/status/confirmed`;
+        let queryString = `https://api.covid19api.com/country/${slug}/status/confirmed?X-Access-Token=019519e3-a704-4f40-9b74-82b632cd0c22`;
 
         $.ajax({
             url: queryString,
@@ -102,7 +103,7 @@ $('document').ready(function () {
 
         let countryInputText = countryInput.val();
 
-        let queryString = `https://api.covid19api.com/live/country/${Slug}`;
+        let queryString = `https://api.covid19api.com/live/country/${Slug}${apiKeyHeaderValue}`;
 
         $.ajax({
             url: queryString,
