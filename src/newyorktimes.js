@@ -1,6 +1,6 @@
 $('document').ready(function () {
     // 
-    //  VARIABLES
+    //  VARIABLES - they're like containers, boxes, baskets, or sandwich bags
     // 
     const searchedCountryNameDisplay = $('#searchedCountryNameDisplay');
     const newsArticles = $('#newsArticles');
@@ -8,7 +8,7 @@ $('document').ready(function () {
     let savedNewsArticles = JSON.parse(localStorage.getItem("savedNewsArticles"));
     let searchLocation = '';
     // 
-    // NY Times API Object
+    // NY Times API Object - objection!
     // 
     const apiNYTimes = {
         newestArticles: [],
@@ -20,29 +20,21 @@ $('document').ready(function () {
         },
         call() {
             const userInputSearchTerm = $('#search');
+            let term = '';
+            let searchTerm = '';
             if (searchedCountryNameDisplay.text().length !== 0 && searchedCountryNameDisplay.text() !== 'Country') {
                 searchLocation = `&fq=glocations:${searchedCountryNameDisplay.text()}`;
             }
-            let term = '';
             if (userInputSearchTerm.val().length <= 0) {
                 term = 'Coronavirus';
             } else {
                 term = `Coronavirus+${userInputSearchTerm.val()}`;
-                console.log(`concatenated users term input`);
             }
-            let searchTerm = '';
             searchTerm = apiNYTimes.refactorSearchTerm(term);
-            console.log("type of searchTerm =" + typeof(searchTerm));
-            console.log(`search term length => ${searchTerm.length}`);
-            console.log(`searchTerm => ${searchTerm}`);
-            console.log(`userInputSearchTerm => ${userInputSearchTerm.val()}`);
-            console.log(`https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${searchTerm}${searchLocation}&sort=newest&api-key=9dBz5iLUOkToYiTEjcz0mgrNxq65pGzm`);
             $.ajax({
                 url: `https://api.nytimes.com/svc/search/v2/articlesearch.json?q=${searchTerm}${searchLocation}&sort=newest&api-key=9dBz5iLUOkToYiTEjcz0mgrNxq65pGzm`,
                 method: "GET"
             }).then(function (response) {
-                console.log(response);
-                console.log(response.response.docs);  // r.r.docs accesses 10 first articles to match search criteria
                 if (response.response.docs.length > 0) {
                     apiNYTimes.displayRecentArticles(response.response.docs);
                 } else {
@@ -82,44 +74,36 @@ $('document').ready(function () {
         },
         saveArticle() {
             let articleNumber = $(this).attr('data-name');
-            console.log(articleNumber);
-            console.log(apiNYTimes.newestArticles);
             savedNewsArticles.push(apiNYTimes.newestArticles[articleNumber]);
             localStorage.setItem("savedNewsArticles", JSON.stringify(savedNewsArticles));
         },
         loadSavedArticles() {
             savedArticlesDisplay.text('');
             for (i = 0; i < savedNewsArticles.length; i++) {
-                console.log(savedNewsArticles[i]);
-
-
                 const articleDiv = $('<div>').addClass('col card s12 m4 articles white-text card-content contentSections articleBlock').attr('data-name', `article-${i}`);
                 const titleHeader = $("<h2>").addClass(`article-title`).text(savedNewsArticles[i].title);
                 const articleLink = $("<a>").addClass(`article-link card-content`).text('Read Full Article').attr('href', savedNewsArticles[i].link).attr('target', '_blank');
                 const deleteButton = $("<button>").addClass('button waves-effect waves-light btn-small').attr('type', 'button').attr('id', 'deleteButton').text('Delete').attr("data-name", `${i}`);
                 articleDiv.append(titleHeader, articleLink, deleteButton);
                 savedArticlesDisplay.append(articleDiv);
-
             }
         },
         deleteArticle() {
             let articleNumber = $(this).attr('data-name');
-            console.log(articleNumber);
             savedNewsArticles.splice(apiNYTimes.newestArticles[articleNumber], 1);
             localStorage.setItem("savedNewsArticles", JSON.stringify(savedNewsArticles));
             apiNYTimes.loadSavedArticles();
         }
     }
-
     // 
-    //  EVENT LISTENERS - click clack pow, another function down
+    //  EVENT LISTENERS - click clack pow, function down
     //     
     $(document).on("click", "#saveButton", apiNYTimes.saveArticle);
     $(document).on("click", "#deleteButton", apiNYTimes.deleteArticle);
     $(document).on('click', '.newContentBtn', apiNYTimes.callNew);
     $('.newSearchBtn').on('click', apiNYTimes.callNew);
     // 
-    //  RUN ON PAGE LOAD
+    //  RUN ON PAGE LOAD - don't worry, you don't have to do the running
     //     
     if (window.location.pathname.includes("data.html")) {
         $(window).on('load', apiNYTimes.call);
