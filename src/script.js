@@ -131,4 +131,9 @@ $('document').ready(function () {
     $('.sidenav').sidenav();
     initApp();
 
+    // Brendan added this for the new country search button on data.html
+    $('.newSearchBtn').on('click', function () {
+        populateDataPage($('#newCountrySearch').val());
+    });
+
 });
