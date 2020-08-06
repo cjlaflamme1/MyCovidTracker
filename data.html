@@ -56,20 +56,20 @@
                     <div class="col s12 m6">
                         <p class="countryData white-text" id = "confirmed">Confirmed:</p>
                         <br />
-                        <p class="countryData white-text" id = "deaths">Deaths:</p>
+                        <p class="countryData white-text"><i><span id = "deaths"></span></i></p>
                     </div>
                     <div class="col s12 m6">
-                        <p class="countryData white-text" id = "recovered">Recovered:</p>
+                        <p class="countryData white-text"><strong><span id = "recovered"></span></strong></p>
                         <br />
-                        <p class="countryData white-text" id = "active">Active:</p>
+                        <p class="countryData white-text"><span id = "active"></span></p>
                     </div>
                     <!-- <p class="center-align">Data goes here</p> -->
                 </div>
             </div>
         </section>
-        <!-- Populated Covid Articles from NYT for Searched Country -->
+        
         <section class="row">
-            
+            <!-- Further content search bar -->
             <div class="card contentSections s12">
                 <label class="contentSearch">Search more content</label>
                 <div class="row">
@@ -78,8 +78,8 @@
                         <button class="newContentBtn waves-effect waves-light btn-small col s2 m3" type="button"><i
                                 class="material-icons">search</i></button>
                     </div>
-
                 </div>
+                <!-- Populated Covid Articles from NYT for Searched Country -->
                 <div class="row" id="newsArticles"></div>
             </div>
         </section>
@@ -96,6 +96,7 @@
             <div class="modal-content">
                 <div class="row">
                     <div class="col s12 m6">
+                        <!-- CDC guidelines on how to slow the spread of COVID-19 -->
                         <h4>CDC Guidelines</h4>
                         <ul class="collection">
                             <li class="collection-item avatar">
