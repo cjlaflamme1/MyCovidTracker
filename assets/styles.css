@@ -21,6 +21,12 @@ p.countryData {
     font-size: x-large;
 }
 
+span#confirmed {
+    background-color: #000000;
+    border-radius: 5px;
+    padding: 2px;
+}
+
 span#deaths {
     background-color: red;
     border-radius: 5px;
