@@ -69,7 +69,7 @@ $('document').ready(function () {
             }
         },
         displayErrorMessage() {
-            const country = searchedCountryNameDisplay.text();
+            const country  = localStorage.getItem("country");
             const errorMessage = $('<div>').addClass('articles errorMessage').text(`There are no search results for ${country}`)
             newsArticles.append(errorMessage);
         },
