@@ -43,7 +43,7 @@ Create an interactive web app utilizeing 2 API's, an unfamiliar CSS framework, a
 
 
 ## Finished Project
-Project Link: [Git Hub Pages URL goes here](Git Hub Pages URL goes here)
+Project Link: [Link to MyCovidTracker](https://cjlaflamme1.github.io/MyCovidTracker/)
 
 
 ## Project Screenshot
