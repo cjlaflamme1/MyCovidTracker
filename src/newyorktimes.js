@@ -90,7 +90,8 @@ $('document').ready(function () {
         },
         deleteArticle() {
             let articleNumber = $(this).attr('data-name');
-            savedNewsArticles.splice(apiNYTimes.newestArticles[articleNumber], 1);
+            console.log(`atricle num to delete => ${articleNumber}`);
+            savedNewsArticles.splice(articleNumber, 1);
             localStorage.setItem("savedNewsArticles", JSON.stringify(savedNewsArticles));
             apiNYTimes.loadSavedArticles();
         }
