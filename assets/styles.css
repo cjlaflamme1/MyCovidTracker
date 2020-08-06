@@ -152,3 +152,8 @@ h2.article-title,
 h3.article-title {
     font-size: 15px;
 }
+
+div.errorMessage {
+    font-size: 30px;
+    text-align: center;
+}

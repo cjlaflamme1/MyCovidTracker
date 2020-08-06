@@ -67,7 +67,7 @@ Project Link: [Link to MyCovidTracker](https://cjlaflamme1.github.io/MyCovidTrac
 * [linkedin.com/in/brendan-leighton/](https://www.linkedin.com/in/brendan-leighton/)
 
 ## Chad J Laflamme
-* [cjlaflamme1@plymouth.ed](cjlaflamme1@plymouth.edu)
+* [cjlaflamme1@plymouth.edu](cjlaflamme1@plymouth.edu)
 * [https://github.com/cjlaflamme1](https://github.com/cjlaflamme1)
 * [www.linkedin.com/in/chad-j-laflamme](www.linkedin.com/in/chad-j-laflamme)
 
