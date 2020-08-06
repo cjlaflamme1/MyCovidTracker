@@ -108,6 +108,7 @@ $('document').ready(function () {
     //  RUN ON PAGE LOAD - don't worry, you don't have to do the running
     //     
     if (window.location.pathname.includes("data.html")) {
+        searchedCountryNameDisplay.text(localStorage.getItem("country"));
         $(window).on('load', apiNYTimes.call);
     }
     if (Array.isArray(savedNewsArticles)) {  // does an array already exist in local storage?
