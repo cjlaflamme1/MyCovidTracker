@@ -21,16 +21,20 @@ p.countryData {
     font-size: x-large;
 }
 
-p#deaths {
-    color: red;
+span#deaths {
+    background-color: red;
+    border-radius: 5px;
 }
 
-p#recovered {
-    color: green;
+span#recovered {
+    background-color: green;
+    border-radius: 5px;
 }
 
-p#active {
-    color: yellow;
+span#active {
+    background-color: yellow;
+    border-radius: 5px;
+    color: #000000;
 }
 
 div.articleRow {
