@@ -103,6 +103,10 @@ $('document').ready(function () {
 
     }
 
+    function refactorBigNumbers(theseNumbers) {
+        return theseNumbers.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
     function initApp() {
         getCovidCountries().then(setCountrysAndAutofill).then(function (response) {
 
