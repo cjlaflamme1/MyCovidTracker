@@ -85,16 +85,16 @@ $('document').ready(function () {
 
             countryEl.text(country);
 
-            confirmedCasesEl.text(`Confirmed: ${confirmedCases}`);
-            activeCasesEl.text(`Active: ${activeCases}`);
-            recoveredCasesEl.text(`Recovered: ${recoveredCases}`);
-            deathCasesEl.text(`Deaths: ${deathCases}`);
+            confirmedCasesEl.text(`Confirmed: ${formatNumbers(confirmedCases)}`);
+            activeCasesEl.text(`Active: ${formatNumbers(activeCases)}`);
+            recoveredCasesEl.text(`Recovered: ${formatNumbers(recoveredCases)}`);
+            deathCasesEl.text(`Deaths: ${formatNumbers(deathCases)}`);
         });
 
     }
 
     
-    function refactorBigNumbers(theseNumbers) {
+    function formatNumbers(theseNumbers) {
         return theseNumbers.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
     
