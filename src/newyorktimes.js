@@ -22,8 +22,9 @@ $('document').ready(function () {
             const userInputSearchTerm = $('#search');
             let term = '';
             let searchTerm = '';
-            if (searchedCountryNameDisplay.text().length !== 0 && searchedCountryNameDisplay.text() !== 'Country') {
-                searchLocation = `&fq=glocations:${searchedCountryNameDisplay.text()}`;
+            let country = localStorage.getItem("country");
+            if (country.length !== 0) {
+                searchLocation = `&fq=glocations:${country}`;
             }
             if (userInputSearchTerm.val().length <= 0) {
                 term = 'Coronavirus';
