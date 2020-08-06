@@ -10,7 +10,7 @@ let recoveredCases = "";
 let deathCases = "";
 
 let date = null;
-let apiKeyHeaderValue = "?X-Access-Token=019519e3-a704-4f40-9b74-82b632cd0c22";
+const apiKeyHeaderValue = "?X-Access-Token=019519e3-a704-4f40-9b74-82b632cd0c22";
 
 
 $('document').ready(function () {
@@ -106,11 +106,25 @@ $('document').ready(function () {
     function initApp() {
         getCovidCountries().then(setCountrysAndAutofill).then(function (response) {
 
+            let storedCountry = localStorage.getItem("country");
+            let storedCountrySlug = localStorage.getItem("slug");
+
+            console.log(`${storedCountry},${storedCountrySlug}`);
+
             if (window.location.pathname.includes("data.html")) {
 
-                let urlParams = new URLSearchParams(window.location.search);
+                if (storedCountry !== "") {
 
-                getCountryData(urlParams.get("current_country"), urlParams.get("slug"));
+                    getCountryData(storedCountry, storedCountrySlug);
+
+                } else {
+                    let urlParams = new URLSearchParams(window.location.search);
+
+                    getCountryData(urlParams.get("current_country"), urlParams.get("slug"));
+
+                }
+
+
 
             }
 
@@ -128,38 +142,24 @@ $('document').ready(function () {
         let { Slug } = countries.find(country => country.Country === currentCountry);
 
         currentCountrySlug = Slug;
+
+        localStorage.setItem("country", currentCountry);
+        localStorage.setItem("slug", currentCountrySlug);
+
         console.log("click");
-
-        let countryInputText = countryInput.val();
-
-        let queryString = `https://api.covid19api.com/live/country/${Slug}${apiKeyHeaderValue}`;
-
-        $.ajax({
-            url: queryString,
-            method: "GET",
-            timeout: 0,
-        }).done(function (response) {
-            console.log(countryInputText);
-            console.log(response);
-        });
 
         location.href = `data.html?current_country=${currentCountry}&slug=${currentCountrySlug}`;
 
     });
 
-    function populateDataPage(country, slug) {
 
-
-
-
-    }
     $('.modal').modal();
     $('.sidenav').sidenav();
     initApp();
 
     // Brendan added this for the new country search button on data.html
     $('.newSearchBtn').on('click', function () {
-        populateDataPage($('#newCountrySearch').val());
+        getCountryData($('#newCountrySearch').val());
     });
 
 });
