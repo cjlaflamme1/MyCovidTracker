@@ -93,6 +93,11 @@ $('document').ready(function () {
 
     }
 
+    
+    function refactorBigNumbers(theseNumbers) {
+        return theseNumbers.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+    
     //check for stored country to display, or get it from URL
     function initApp() {
         getCovidCountries().then(setCountrysAndAutofill).then(function (response) {

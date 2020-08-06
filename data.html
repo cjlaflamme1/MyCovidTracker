@@ -30,19 +30,21 @@
     </ul>
 <!-- Box With Name of Searched Country -->
     <main class="container">
-        <div class="row contentSections">
-            <div class="populatedCountry col s6 m4">
-                <h3 id="searchedCountryNameDisplay" >Country</h3>
-            </div>
-            <div class="col s0 m4"></div>
-<!-- Search Box For Different Countries Stats -->
-            <div class="row">
-                <div class="newSearch col s6 m4">
-                    <label class="searchLabel">New Search</label>
-                    <div class="input-field">
-                        <input class="autocomplete col s8" id="newCountrySearch" autocomplete="off" placeholder="Search Another Country">
-                        <button class="newSearchBtn waves-effect waves-light btn-small col s3" type="button"><i
-                                class="material-icons">search</i></button>
+        <div class="row contentSections card">
+            <div class="card-content">
+                <div class="populatedCountry col s6 m4">
+                    <h3 id="searchedCountryNameDisplay" >Country</h3>
+                </div>
+                <div class="col s0 m4"></div>
+    <!-- Search Box For Different Countries Stats -->
+                <div class="row">
+                    <div class="newSearch col s6 m4">
+                        <label class="searchLabel">New Search</label>
+                        <div class="input-field">
+                            <input class="autocomplete col s8" id="newCountrySearch" autocomplete="off" placeholder="Search Country">
+                            <button class="newSearchBtn waves-effect waves-light btn-small col s3" type="button"><i
+                                    class="material-icons">search</i></button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -54,20 +56,20 @@
                     <div class="col s12 m6">
                         <p class="countryData white-text" id = "confirmed">Confirmed:</p>
                         <br />
-                        <p class="countryData white-text" id = "deaths">Deaths:</p>
+                        <p class="countryData white-text"><i><span id = "deaths"></span></i></p>
                     </div>
                     <div class="col s12 m6">
-                        <p class="countryData white-text" id = "recovered">Recovered:</p>
+                        <p class="countryData white-text"><strong><span id = "recovered"></span></strong></p>
                         <br />
-                        <p class="countryData white-text" id = "active">Active:</p>
+                        <p class="countryData white-text"><span id = "active"></span></p>
                     </div>
                     <!-- <p class="center-align">Data goes here</p> -->
                 </div>
             </div>
         </section>
-        <!-- Populated Covid Articles from NYT for Searched Country -->
+        
         <section class="row">
-            
+            <!-- Further content search bar -->
             <div class="card contentSections s12">
                 <label class="contentSearch">Search more content</label>
                 <div class="row">
@@ -76,8 +78,8 @@
                         <button class="newContentBtn waves-effect waves-light btn-small col s2 m3" type="button"><i
                                 class="material-icons">search</i></button>
                     </div>
-
                 </div>
+                <!-- Populated Covid Articles from NYT for Searched Country -->
                 <div class="row" id="newsArticles"></div>
             </div>
         </section>
@@ -94,6 +96,7 @@
             <div class="modal-content">
                 <div class="row">
                     <div class="col s12 m6">
+                        <!-- CDC guidelines on how to slow the spread of COVID-19 -->
                         <h4>CDC Guidelines</h4>
                         <ul class="collection">
                             <li class="collection-item avatar">
@@ -148,7 +151,7 @@
                                                 sick and other household members.</li>
                                         </ul>
                                     </li>
-                                    <li class="preventList">Outside your home: Put 6 feet of distancew between yourself
+                                    <li class="preventList">Outside your home: Put 6 feet of distance between yourself
                                         and people who don't live in your household.
                                         <ul class="innerList">
                                             <li class="innerList">Remember that some people without symptoms may be able
@@ -199,12 +202,12 @@
                                 <h5>Clean and disinfect</h5>
                                 <ul class="preventList">
                                     <li class="preventList">Clean AND disinfect frequently touched surfaces daily. This
-                                        includes tables, doorknobs, light switches, countertops, handles, desks, phones,
+                                        includes tables, doorknobs, light switches, counter-tops, handles, desks, phones,
                                         keyboards, toilets, faucets, and sinks.</li>
                                     <li class="preventList">If surfaces are dirty, clean them. Use detergent or soap and
                                         water prior to disinfection.</li>
                                     <li class="preventList">Then, use a household disinfectant. Most common
-                                        EPA-registered household disinfectantsexternal icon will work.</li>
+                                        EPA-registered household disinfectants will work.</li>
                                 </ul>
                             </li>
                             <li class="collection-item avatar">

@@ -21,6 +21,25 @@ p.countryData {
     font-size: x-large;
 }
 
+span#deaths {
+    background-color: red;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+span#recovered {
+    background-color: green;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+span#active {
+    background-color: yellow;
+    border-radius: 5px;
+    color: #000000;
+    padding: 2px;
+}
+
 div.articleRow {
     margin-bottom: 0;
 }
@@ -126,4 +145,9 @@ input#search {
 h2.article-title,
 h3.article-title {
     font-size: 15px;
+}
+
+div.errorMessage {
+    font-size: 30px;
+    text-align: center;
 }
