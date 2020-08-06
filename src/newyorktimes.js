@@ -22,8 +22,9 @@ $('document').ready(function () {
             const userInputSearchTerm = $('#search');
             let term = '';
             let searchTerm = '';
-            if (searchedCountryNameDisplay.text().length !== 0 && searchedCountryNameDisplay.text() !== 'Country') {
-                searchLocation = `&fq=glocations:${searchedCountryNameDisplay.text()}`;
+            let country = localStorage.getItem("country");
+            if (country.length !== 0) {
+                searchLocation = `&fq=glocations:${country}`;
             }
             if (userInputSearchTerm.val().length <= 0) {
                 term = 'Coronavirus';
@@ -68,7 +69,7 @@ $('document').ready(function () {
             }
         },
         displayErrorMessage() {
-            const country = searchedCountryNameDisplay.text();
+            const country  = localStorage.getItem("country");
             const errorMessage = $('<div>').addClass('articles errorMessage').text(`There are no search results for ${country}`)
             newsArticles.append(errorMessage);
         },
@@ -90,7 +91,8 @@ $('document').ready(function () {
         },
         deleteArticle() {
             let articleNumber = $(this).attr('data-name');
-            savedNewsArticles.splice(apiNYTimes.newestArticles[articleNumber], 1);
+            console.log(`atricle num to delete => ${articleNumber}`);
+            savedNewsArticles.splice(articleNumber, 1);
             localStorage.setItem("savedNewsArticles", JSON.stringify(savedNewsArticles));
             apiNYTimes.loadSavedArticles();
         }
@@ -106,6 +108,7 @@ $('document').ready(function () {
     //  RUN ON PAGE LOAD - don't worry, you don't have to do the running
     //     
     if (window.location.pathname.includes("data.html")) {
+        searchedCountryNameDisplay.text(localStorage.getItem("country"));
         $(window).on('load', apiNYTimes.call);
     }
     if (Array.isArray(savedNewsArticles)) {  // does an array already exist in local storage?
