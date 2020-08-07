@@ -30,7 +30,7 @@
 
 ## Group Project 1
 
-Create an interactive web app utilizeing 2 API's, an unfamiliar CSS framework, and a polished UI that's free of alerts, confirms, and prompts. 
+Create an interactive web app utilizing 2 API's, an unfamiliar CSS framework, and a polished UI that's free of alerts, confirms, and prompts. 
 
 
 ## Technologies Used
