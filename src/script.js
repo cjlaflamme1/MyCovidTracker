@@ -110,7 +110,7 @@ $('document').ready(function () {
                 if (storedCountry !== "") {
 
                     getCountryData(storedCountry, storedCountrySlug);
-
+                    
                 } else {
                     let urlParams = new URLSearchParams(window.location.search);
 
