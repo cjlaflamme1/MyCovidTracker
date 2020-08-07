@@ -4,7 +4,7 @@
 <br />
   <h1 align="center">My Covid Tracker</h1>
 <p align="center">
-  Tracking current articles and statistics on Covid-19
+  Tracking Current Articles and Statistics on COVID-19
 </p>
 
   
@@ -39,7 +39,7 @@ Create an interactive web app utilizeing 2 API's, an unfamiliar CSS framework, a
     * Materialize
     * API's:
         - Coronavirus COVID19 API
-        - MY Times API
+        - NY Times API
 
 
 ## Finished Project
