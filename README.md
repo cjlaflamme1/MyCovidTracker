@@ -48,7 +48,9 @@ Project Link: [Link to MyCovidTracker](https://cjlaflamme1.github.io/MyCovidTrac
 
 ## Project Screenshot
 
-![Screenshot](screen shot URL/file-extension goes here)
+![Index screenshot](https://user-images.githubusercontent.com/65721950/89673502-7cef6c80-d8b4-11ea-93d2-6a0e2a7f3b5b.png)
+![Data screenshot](https://user-images.githubusercontent.com/65721950/89673499-7cef6c80-d8b4-11ea-8ea2-ba33ee8fc432.png)
+![Personal screenshot](https://user-images.githubusercontent.com/65721950/89673506-7d880300-d8b4-11ea-8c73-edf415c10c86.png)
 
 
 
