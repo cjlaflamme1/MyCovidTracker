@@ -93,7 +93,7 @@ $('document').ready(function () {
 
     }
 
-    
+    //formats numbers with commas
     function formatNumbers(theseNumbers) {
         return theseNumbers.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
