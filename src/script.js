@@ -1,3 +1,6 @@
+//COVID-19 API implementation for MyCovidTracker
+//written by Dwayne Risley 
+//if you have a bug to report, fight me.
 
 let countries = [];
 let data = [];
