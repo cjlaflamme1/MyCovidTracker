@@ -33,7 +33,7 @@ $('document').ready(function () {
     const recoveredCasesEl = $("#recovered");
     const deathCasesEl = $("#deaths");
 
-    
+
 
     //get countries from API to populate list
     function getCovidCountries() {
@@ -76,7 +76,7 @@ $('document').ready(function () {
             method: "GET",
             timeout: 0,
         }).done(function (response) {
-            
+
             data = response;
 
             let { Active, Confirmed, Deaths, Recovered } = data.reverse().find(response => response.Province === "");
@@ -105,11 +105,10 @@ $('document').ready(function () {
             url: queryString,
             method: "GET",
             timeout: 0,
-        }).done(function (response){
-            console.log(response);
+        }).done(function (response) {
 
             confirmedCases = response.TotalConfirmed;
-            activeCases = "Data Unavailable";
+            activeCases = response.TotalConfirmed - response.TotalRecovered - response.TotalDeaths;
             recoveredCases = response.TotalRecovered;
             deathCases = response.TotalDeaths;
 
@@ -123,16 +122,17 @@ $('document').ready(function () {
 
     }
 
-    //formats numbers with commas
+    //formats numbers with commas 
+    //(via https://stackoverflow.com/questions/2901102/how-to-print-a-number-with-commas-as-thousands-separators-in-javascript)
     function formatNumbers(theseNumbers) {
         return theseNumbers.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
-    
+
     //check for stored country to display, or get it from URL
     function initApp() {
         getCovidCountries().then(setCountrysAndAutofill).then(function (response) {
 
-            if(currentCountry===""){
+            if (currentCountry === "") {
                 localStorage.setItem("country", "");
                 //currentCountry = "";
                 getWorldData();
@@ -146,7 +146,7 @@ $('document').ready(function () {
                 if (storedCountry !== "") {
 
                     getCountryData(storedCountry, storedCountrySlug);
-                    
+
                 } else {
                     let urlParams = new URLSearchParams(window.location.search);
 
@@ -179,15 +179,15 @@ $('document').ready(function () {
 
     });
 
-    dataNav.on('click', function(){
-        if(currentCountry===""){
+    dataNav.on('click', function () {
+        if (currentCountry === "") {
             localStorage.setItem("country", "");
             //currentCountry = "";
             getWorldData();
-        }else{
-            getCountryData(currentCountry,currentCountrySlug);
+        } else {
+            getCountryData(currentCountry, currentCountrySlug);
         }
-        
+
     });
 
     // Brendan added this for the new country search button on data.html
