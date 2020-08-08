@@ -21,7 +21,7 @@ $('document').ready(function () {
     // index Variables
     const countryInput = $('.autocomplete');
     const countryInputButton = $('#countryInputButton');
-    const dataField = $(".contentSections .card-content");
+    const dataNav = $('#dataNav');
 
     //data.html Variables
     const countryEl = $('div.populatedCountry h3');
@@ -93,6 +93,33 @@ $('document').ready(function () {
 
     }
 
+    //display global data if no country has been selected
+    function getWorldData() {
+        let queryString = `https://api.covid19api.com/world/total${apiKeyHeaderValue}`;
+
+
+        $.ajax({
+            url: queryString,
+            method: "GET",
+            timeout: 0,
+        }).done(function (response){
+            console.log(response);
+
+            confirmedCases = response.TotalConfirmed;
+            activeCases = "Data Unavailable";
+            recoveredCases = response.TotalRecovered;
+            deathCases = response.TotalDeaths;
+
+            countryEl.text("World Totals");
+
+            confirmedCasesEl.text(`Confirmed: ${formatNumbers(confirmedCases)}`);
+            activeCasesEl.text(`Active: ${formatNumbers(activeCases)}`);
+            recoveredCasesEl.text(`Recovered: ${formatNumbers(recoveredCases)}`);
+            deathCasesEl.text(`Deaths: ${formatNumbers(deathCases)}`);
+        });
+
+    }
+
     //formats numbers with commas
     function formatNumbers(theseNumbers) {
         return theseNumbers.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -101,6 +128,12 @@ $('document').ready(function () {
     //check for stored country to display, or get it from URL
     function initApp() {
         getCovidCountries().then(setCountrysAndAutofill).then(function (response) {
+
+            if(currentCountry===""){
+                localStorage.setItem("country", "");
+                //currentCountry = "";
+                getWorldData();
+            }
 
             let storedCountry = localStorage.getItem("country");
             let storedCountrySlug = localStorage.getItem("slug");
@@ -141,6 +174,17 @@ $('document').ready(function () {
         //set data.html URL to have slug
         location.href = `data.html?current_country=${currentCountry}&slug=${currentCountrySlug}`;
 
+    });
+
+    dataNav.on('click', function(){
+        if(currentCountry===""){
+            localStorage.setItem("country", "");
+            //currentCountry = "";
+            getWorldData();
+        }else{
+            getCountryData(currentCountry,currentCountrySlug);
+        }
+        
     });
 
     // Brendan added this for the new country search button on data.html
