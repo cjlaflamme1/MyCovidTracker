@@ -82,3 +82,5 @@ Project Link: [Link to MyCovidTracker](https://cjlaflamme1.github.io/MyCovidTrac
 # Acknowledgements
 * [GitHub Pages](https://pages.github.com)
 * [Google](https://www.google.com/)
+* [COVID19 API](https://covid19api.com)
+* [New York Times API](https://developers.nytimes.com)
